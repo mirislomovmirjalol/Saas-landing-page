@@ -3,8 +3,10 @@ import Link from "next/link";
 import {ArrowRightIcon} from "@radix-ui/react-icons";
 import {Button} from "@/components/ui/button";
 import Image from "next/image";
-import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
+import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
 import {features} from "@/data/features";
+import {pricing} from "@/data/pricing";
+import {CircleCheck} from "lucide-react";
 
 export default function Home() {
     return (
@@ -12,7 +14,7 @@ export default function Home() {
             <div className="border-b border-border">
                 <main className="container mx-auto">
                     <div className="relative md:mt-24 mx-auto w-full max-w-4xl pt-4 text-center">
-                        <div className="flex justify-center">
+                        <div className="justify-center hidden md:flex">
                             <div
                                 className="flex flex-row items-center justify-center gap-5 p-1 text-xs bg-card/60 backdrop-blur-lg rounded-md border border-border">
                                 <Badge className="font-semibold">New</Badge>
@@ -28,7 +30,7 @@ export default function Home() {
                             with
                             this landing
                             page!</h1>
-                        <p className="mx-auto my-4 text-sm w-full max-w-xl bg-transparent text-center font-medium leading-relaxed tracking-wide text-muted-foreground">
+                        <p className="mx-auto my-4 text-sm w-full max-w-xl text-center font-medium leading-relaxed tracking-wide">
                             This is a landing page template that you can use to create a beautiful website. It is
                             designed
                             to be
@@ -48,12 +50,12 @@ export default function Home() {
                         <div
                             className="absolute top-0 -z-10 max-h-full max-w-screen-lg w-full h-full blur-2xl">
                             <div
-                                className="absolute top-10 left-24 w-56 h-56 bg-violet-600 rounded-full mix-blend-multiply opacity-70 animate-blob filter blur-3xl">
+                                className="absolute top-24 left-24 w-56 h-56 bg-violet-600 rounded-full mix-blend-multiply opacity-70 animate-blob filter blur-3xl">
                             </div>
                             <div
-                                className="absolute bottom-2/4 right-1/4 w-56 h-56 bg-sky-600 rounded-full mix-blend-multiply opacity-70 animate-blob delay-1000 filter blur-3xl"></div>
+                                className="absolute hidden md:block bottom-2 right-1/4 w-56 h-56 bg-sky-600 rounded-full mix-blend-multiply opacity-70 animate-blob delay-1000 filter blur-3xl"></div>
                             <div
-                                className="absolute bottom-1/4 left-1/3 w-56 h-56 bg-pink-600 rounded-full mix-blend-multiply opacity-70 animate-blob delay-500 filter blur-3xl"></div>
+                                className="absolute hidden md:block bottom-1/4 left-1/3 w-56 h-56 bg-pink-600 rounded-full mix-blend-multiply opacity-70 animate-blob delay-500 filter blur-3xl"></div>
                         </div>
                     </div>
 
@@ -70,7 +72,7 @@ export default function Home() {
             <section
                 className="border-b border-border bg-gradient-to-b from-background to-transparent via-background via-90% relative">
                 <div className="container mx-auto text-center">
-                    <div className="my-14">
+                    <div className="my-24">
                         <h5 className="text-primary">
                             WHY CHOOSE US
                         </h5>
@@ -113,6 +115,57 @@ export default function Home() {
                 </div>
             </section>
 
+            {/* Pricing */}
+
+            <section
+                className="border-b dark border-border bg-background">
+                <div className="container mx-auto text-center">
+                    <div className="py-14">
+                        <h2 className="text-4xl font-extrabold my-4 text-foreground">
+                            Pricing Plans
+                        </h2>
+
+                        <p className="mx-auto my-4 text-sm w-full max-w-md bg-transparent text-center font-medium leading-relaxed tracking-wide text-muted-foreground">
+                            Choose a plan that works best for you. You can always upgrade or downgrade your plan later.
+                        </p>
+                        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+                            {pricing.map((plan) => (
+                                <Card key={plan.title} className="w-full mx-auto max-w-xl text-left relative">
+                                    {plan.fancy && (
+                                        <Badge className="absolute top-4 right-4">
+                                            Popular
+                                        </Badge>
+                                    )}
+                                    <CardHeader>
+                                        <CardTitle className="text-2xl">
+                                            {plan.title}
+                                        </CardTitle>
+                                        <CardDescription className="mt-4">
+                                            {plan.description}
+                                        </CardDescription>
+                                        <h5 className="text-2xl font-bold">{plan.price}</h5>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <Button className="w-full" variant={plan.fancy ? "default" : "secondary"}>
+                                            Get Started
+                                        </Button>
+                                    </CardContent>
+                                    <CardFooter>
+                                        <ul className="mt-4">
+                                            {plan.features.map((feature) => (
+                                                <li key={feature} className="flex items-center gap-2">
+                                                    <CircleCheck className="w-4 h-4 text-green-500"/>
+                                                    {feature}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </CardFooter>
+                                </Card>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
 
         </>
     );
