@@ -1,10 +1,11 @@
 import type {Metadata} from "next";
-import {Rosario} from "next/font/google";
+import {Mulish} from "next/font/google";
 import "./globals.css";
 import React from "react";
 import Navbar from "@/components/layout/Navbar";
+import {ThemeProvider} from "@/app/theme-provider";
 
-const rosario = Rosario({subsets: ["latin"]});
+const font = Mulish({subsets: ["latin"]});
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -14,10 +15,12 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: Readonly<{ children: React.ReactNode }>) {
     return (
         <html lang="en" className="dark">
-            <body className={rosario.className}>
-                <Navbar />
-                {children}
-            </body>
+        <body className={font.className}>
+        <ThemeProvider>
+            <Navbar/>
+            {children}
+        </ThemeProvider>
+        </body>
         </html>
     );
 }

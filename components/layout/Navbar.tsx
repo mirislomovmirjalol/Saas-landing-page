@@ -1,6 +1,7 @@
 import Link from "next/link";
 import {Button} from "@/components/ui/button";
 import {navLinks} from "@/data/navLinks";
+import {ThemeChanger} from "@/app/Theme-changer";
 
 const Navbar = () => {
     return (
@@ -22,9 +23,12 @@ const Navbar = () => {
                     ))}
                 </ul>
 
-                <Button>
-                    Get Started
-                </Button>
+                <div className="flex flex-row justify-end space-x-2">
+                    <ThemeChanger/>
+                    <Button>
+                        Get Started
+                    </Button>
+                </div>
             </div>
         </nav>
     );
