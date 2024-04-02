@@ -4,7 +4,7 @@ import "./globals.css";
 import React from "react";
 import Navbar from "@/components/layout/Navbar";
 import {ThemeProvider} from "@/app/theme-provider";
-
+import Footer from "@/components/layout/Footer";
 const font = Mulish({subsets: ["latin"]});
 
 export const metadata: Metadata = {
@@ -19,6 +19,7 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
         <ThemeProvider>
             <Navbar/>
             {children}
+            <Footer/>
         </ThemeProvider>
         </body>
         </html>
